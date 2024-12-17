@@ -19,8 +19,8 @@ function Main() {
     // ADD POST
 
     const initialNewPost = {
-
         title: ""
+
     };
     const [newPost, setNewPost] = useState(initialNewPost);
     const [postList, setPostList] = useState([]);
@@ -28,8 +28,11 @@ function Main() {
 
     function handleInput(event) {
 
-        const value = event.target.value;
-        setNewPost({ ...newPost, [event.target.title]: value });
+        const { value, name } = event.target;
+        console.log(value);
+        console.log(name);
+
+        setNewPost({ ...newPost, [name]: value });
 
     }
     function handleSubmit(event) {
@@ -57,6 +60,29 @@ function Main() {
                     />
                 ))}
 
+                {postList.map((post) => {
+
+                    return (
+                        <li className="list-unstyled">
+
+                            <div className="card" style={{
+                                width: 15 + "rem"
+                            }}>
+                                <img className="card-img-top" src="..." alt="Card image cap" />
+                                <div className="card-body">
+                                    <h5 className="card-title">{post.title}</h5>
+                                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    <a href="#" className="btn btn-primary">Go somewhere</a>
+                                </div>
+                            </div>
+
+
+
+                        </li>
+                    )
+                })}
+
+
             </ul>
 
 
@@ -73,11 +99,12 @@ function Main() {
                             id="title"
                             aria-describedby="titlelHelp"
                             onChange={handleInput}
-                            value={postList.title}
+                            value={newPost.title}
                             name="title"
                         />
 
                     </div>
+
                     <button type="submit" className="btn btn-primary">
                         Submit
                     </button>
