@@ -1,8 +1,8 @@
 import style from "../style/Button.module.css"
 
-function Button() {
+function Button({ onDelete }) {
 
-    return <a href="#" className={style.btn}>Leggi di più</a>
+    return <button onClick={onDelete} className={style.btn}>Delete</button>
 }
 
 export default Button

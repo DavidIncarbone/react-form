@@ -3,9 +3,7 @@ import posts from "../data/posts"
 import Card from "./Card"
 import tagsStyle from "../style/Tags.module.css"
 import TagsList from "./TagsList";
-
-
-
+import Button from "./Button"
 
 function Main() {
 
@@ -14,12 +12,14 @@ function Main() {
     function deleteItem(id) {
 
         setMyPosts(myPosts.filter((post) => post.id !== id))
+
     }
 
     // ADD POST
 
     const initialNewPost = {
-        title: ""
+        title: "",
+        description: ""
 
     };
     const [newPost, setNewPost] = useState(initialNewPost);
@@ -39,7 +39,7 @@ function Main() {
         event.preventDefault();
         setPostList([...postList, newPost]);
         setNewPost(initialNewPost);
-        setTimeout(console.log(postList), 1000)
+        console.log(postList)
 
     }
 
@@ -71,21 +71,14 @@ function Main() {
                                 <img className="card-img-top" src="..." alt="Card image cap" />
                                 <div className="card-body">
                                     <h5 className="card-title">{post.title}</h5>
-                                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    <p className="card-text">{post.description}</p>
                                     <a href="#" className="btn btn-primary">Go somewhere</a>
                                 </div>
                             </div>
-
-
-
                         </li>
                     )
                 })}
-
-
             </ul>
-
-
             <section className="my-4 ms-4">
                 <h2>Aggiungi nuovo post</h2>
                 <form onSubmit={handleSubmit} className="w-50">
@@ -102,7 +95,20 @@ function Main() {
                             value={newPost.title}
                             name="title"
                         />
-
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="description" className="form-label">
+                            description
+                        </label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            id="description"
+                            aria-describedby="descriptionlHelp"
+                            onChange={handleInput}
+                            value={newPost.description}
+                            name="description"
+                        />
                     </div>
 
                     <button type="submit" className="btn btn-primary">
