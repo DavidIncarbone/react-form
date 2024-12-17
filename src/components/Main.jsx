@@ -19,9 +19,8 @@ function Main() {
     // ADD POST
 
     const initialNewPost = {
-        title: "",
-        content: "",
 
+        title: ""
     };
     const [newPost, setNewPost] = useState(initialNewPost);
     const [postList, setPostList] = useState([]);
@@ -29,13 +28,16 @@ function Main() {
 
     function handleInput(event) {
 
-        const value = event.target.type === "checkbox" ? event.target.checked : event.target.value;
-        setNewPost({ ...newPost, [event.target.name]: value });
+        const value = event.target.value;
+        setNewPost({ ...newPost, [event.target.title]: value });
+
     }
     function handleSubmit(event) {
         event.preventDefault();
         setPostList([...postList, newPost]);
         setNewPost(initialNewPost);
+        setTimeout(console.log(postList), 1000)
+
     }
 
     return (
@@ -54,6 +56,7 @@ function Main() {
                         onDelete={() => deleteItem(post.id)}
                     />
                 ))}
+
             </ul>
 
 
@@ -69,27 +72,12 @@ function Main() {
                             className="form-control"
                             id="title"
                             aria-describedby="titlelHelp"
-                            value={newPost.title}
                             onChange={handleInput}
+                            value={postList.title}
                             name="title"
                         />
 
                     </div>
-                    <div className="mb-3">
-                        <label htmlFor="content" className="form-label">
-                            Content
-                        </label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            id="content"
-                            value={newPost.content}
-                            onChange={handleInput}
-                            name="content"
-                        />
-                    </div>
-
-
                     <button type="submit" className="btn btn-primary">
                         Submit
                     </button>
