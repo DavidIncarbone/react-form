@@ -2,7 +2,8 @@ import { useState } from "react";
 import posts from "../data/posts"
 import Card from "./Card"
 import tagsStyle from "../style/Tags.module.css"
-import TagsList from "./TagsList"
+import TagsList from "./TagsList";
+import MyForm from "./MyForm"
 
 
 
@@ -14,7 +15,7 @@ function Main() {
     }
 
     return (
-        <main className="d-flex">
+        <main className="d-flex flex-column">
 
             <TagsList />
 
@@ -30,6 +31,7 @@ function Main() {
                     />
                 ))}
             </ul>
+            <MyForm />
         </main>
     )
 }

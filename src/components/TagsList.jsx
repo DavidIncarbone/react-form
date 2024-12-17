@@ -14,11 +14,13 @@ console.log(filteredTags)
 
 function TagsList() {
 
+
     return (
-        <div className="w-25">
+        <div className="w-25 ms-5">
             <h2 className="ps-1">Lista dei Tags</h2>
             <ul>
                 {filteredTags.map((tag) => {
+
                     return <li>{tag}</li>
                 })}
             </ul>
