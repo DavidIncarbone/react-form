@@ -9,11 +9,16 @@ function Main() {
 
     //DELETE
     const [myPosts, setMyPosts] = useState(posts);
+
     function deleteItem(id) {
 
-        setMyPosts(myPosts.filter((post) => post.id !== id))
+        setMyPosts(
+            myPosts.filter((post) => post.id !== id)
+        )
+
 
     }
+
 
     // ADD POST
 
@@ -25,6 +30,14 @@ function Main() {
     const [newPost, setNewPost] = useState(initialNewPost);
     const [postList, setPostList] = useState([]);
 
+    function deleteNewItem(title) {
+
+        setPostList(
+            postList.filter((post) => post.title !== title)
+        )
+
+
+    }
 
     function handleInput(event) {
 
@@ -60,7 +73,8 @@ function Main() {
                     />
                 ))}
 
-                {postList.map((post) => {
+                {postList.map((post, i) => {
+
 
                     return (
                         <li className="list-unstyled">
@@ -72,7 +86,11 @@ function Main() {
                                 <div className="card-body">
                                     <h5 className="card-title">{post.title}</h5>
                                     <p className="card-text">{post.description}</p>
-                                    <a href="#" className="btn btn-primary">Go somewhere</a>
+                                    <button onClick={() => deleteNewItem(post.title)}
+
+                                        className="btn btn-primary">Delete</button>
+
+
                                 </div>
                             </div>
                         </li>
@@ -98,10 +116,10 @@ function Main() {
                     </div>
                     <div className="mb-3">
                         <label htmlFor="description" className="form-label">
-                            description
+                            Description
                         </label>
                         <input
-                            type="text"
+                            type="textarea"
                             className="form-control"
                             id="description"
                             aria-describedby="descriptionlHelp"
